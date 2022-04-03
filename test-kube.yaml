@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: parcel-test
+  namespace: default
+spec:
+  containers:
+  - name: parcel-test
+    image: node:16.14-alpine
+    imagePullPolicy: IfNotPresent
+    workingDir: /srv
+    command:
+      - /bin/sh
+      - -c
+      - "apk update && apk add git;
+        git clone --depth 2 https://github.com/sebtiz13/parcel-test.git /srv;
+        yarn install --frozen-lockfile --check-files --non-interactive;
+        yarn build;
+        echo 'end';
+        sleep 600;
+        "
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 100m
+      limits:
+        memory: 1024Mi
+        cpu: 1000m
+  restartPolicy: Always

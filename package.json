@@ -1,0 +1,13 @@
+{
+  "name": "parcel-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel src/index.html"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "parcel": "^2.4.1"
+  }
+}
